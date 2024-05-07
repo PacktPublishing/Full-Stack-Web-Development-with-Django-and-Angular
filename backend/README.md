@@ -5,9 +5,19 @@
 * Python 3
 * Django 5
 
-This project has been created with Pyton version 3.10.12 and Django version 5.0.4
+This project has been created with Python version 3.10.12 and Django version 5.0.4 on a machine with Ubuntu OS version 22.04.1
 
 ## Installation
+
+### Python programming language
+
+```shell
+sudo apt update
+sudo apt install python3
+python3 --version
+```
+If Python is installed, you should see the version of your installation.
+Python 3.10.12
 
 ### Django framework
 
