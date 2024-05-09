@@ -2,12 +2,29 @@
 
 ## Prerequisites
 
+* Git
 * Python 3
 * Django 5
 
 This project has been created with Python version 3.10.12 and Django version 5.0.4 on a machine with Ubuntu OS version 22.04.1
 
 ## Installation
+
+### Git
+
+You will need this Source Code Management Tool to download the application from the git repository.
+
+```shell
+sudo apt install git-all
+git --version
+```
+If Git is installed, you should see the version of your installation:
+
+git version 2.34.1
+
+For other Operating systems see the following link:
+
+https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
 ### Python programming language
 
@@ -16,8 +33,12 @@ sudo apt update
 sudo apt install python3
 python3 --version
 ```
-If Python is installed, you should see the version of your installation.
+If Python is installed, you should see the version of your installation:
+
 Python 3.10.12
+
+For other Operating systems see the following link:
+https://kinsta.com/knowledgebase/install-python/
 
 ### Django framework
 
@@ -27,8 +48,17 @@ python -m django --version
 ```
 If Django is installed, you should see the version of your installation. If it isn’t, you’ll get an error telling “No module named django”.
 
-## Project initialization
-Only in case you want to start your own project (not necessary for this tutorial)type the following command:
+For other Operating systems see the following link:
+https://docs.djangoproject.com/en/5.0/topics/install/
+
+## Project Download
+You can clone the github repository containing the source code of this book:
+```shell
+git clone https://github.com/PacktPublishing/Full-Stack-Web-Development-with-Django-and-Angular.git 
+```
+
+## Project initialization (optional)
+Only in case you want to start your own project (not necessary for this tutorial) type the following command:
 
 ```shell
 django-admin startproject packtDjangoProject
