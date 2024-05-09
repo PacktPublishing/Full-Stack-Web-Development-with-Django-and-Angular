@@ -6,3 +6,4 @@
 workspace.xml
 backend/packtDjangoProject/packtDjangoProject/__pycache__
 backend/packtDjangoProject/packtDjangoApp/__pycache__
+UML/
