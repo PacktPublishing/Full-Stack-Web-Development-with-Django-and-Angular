@@ -1,0 +1,1 @@
+from .WhenPersistingProduct import *

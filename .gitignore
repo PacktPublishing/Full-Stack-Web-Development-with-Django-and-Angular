@@ -7,4 +7,5 @@ workspace.xml
 backend/packtDjangoProject/packtDjangoProject/__pycache__
 backend/packtDjangoProject/packtDjangoApp/__pycache__
 backend/packtDjangoProject/packtDjangoApp/migrations/__pycache__
+backend/packtDjangoProject/tests/__pycache__
 UML/

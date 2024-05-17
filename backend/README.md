@@ -92,3 +92,15 @@ To create your app, make sure you’re in the same directory as manage.py and ty
 ```shell
 python manage.py startapp packtDjangoApp
 ```
+## Execute tests
+
+To automatically test your app, make sure you’re in the same directory as manage.py and type this command:
+
+```shell
+python manage.py test
+```
+
+# Execute BDD tests
+```shell
+behave
+```
