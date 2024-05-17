@@ -51,6 +51,16 @@ If Django is installed, you should see the version of your installation. If it i
 For other Operating systems see the following link:
 https://docs.djangoproject.com/en/5.0/topics/install/
 
+### Django Behave integration
+
+```shell
+python -m pip install behave-django
+behave --version
+```
+If Behave is installed, you should see the version of your installation:
+
+behave 1.2.6
+
 ## Project Download
 You can clone the github repository containing the source code of this book:
 ```shell
@@ -100,7 +110,7 @@ To automatically test your app, make sure you’re in the same directory as mana
 python manage.py test
 ```
 
-# Execute BDD tests
+## Execute BDD tests
 ```shell
-behave
+python manage.py behave
 ```
