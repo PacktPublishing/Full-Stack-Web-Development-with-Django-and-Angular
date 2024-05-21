@@ -1,41 +1,39 @@
 #! python
-from decimal import Decimal
 import django
 from django.test import TestCase
-from packtDjangoApp.models import Product
-from packtDjangoApp.models import CurrencyEnum
-from .BaseUnitTest import buildProduct, persistProduct
+from packtDjangoApp.models import Account
+from .BaseUnitTest import persistAccount
 
 
-class TestWhenPersistingProduct(TestCase):
+class TestWhenPersistingAccount(TestCase):
     
 
     def testShouldCreateAnInstance(self):
         
         ''' Given: an instance '''
-        instance: Product = buildProduct()
+        instance: Account = persistAccount()
 
         ''' When: saving the instance '''
         instance.save()
 
         ''' Then: the instance is saved in the DB '''
-        persistedInstances = Product.objects.all()
+        persistedInstances = Account.objects.all()
         self.assertEquals(persistedInstances.count(), 1)
 
 
     def testShouldReadAnInstance(self):
         
         ''' Given: a persisted instance '''
-        persistProduct()
+        persistAccount()
         
         ''' When: reading the instance '''
-        persidedInstance = Product.objects.get(pk=1)
+        persidedInstance = Account.objects.get(pk=1)
 
         ''' Then: the instance is read from the DB'''
         self.assertIsNotNone(persidedInstance)
-        self.assertEquals('Product 1', persidedInstance.name)
-        self.assertEquals(Decimal('55.20'), persidedInstance.price)
-        self.assertEquals(CurrencyEnum.EUR, persidedInstance.currency)
+        self.assertIsNotNone(persidedInstance.address)
+        self.assertIsNotNone(persidedInstance.user)
+        self.assertEquals(0, persidedInstance.version)
 
 
     def testShouldUpdateAnInstance(self):
@@ -44,19 +42,19 @@ class TestWhenPersistingProduct(TestCase):
         persidedInstance = self.findInstance()
 
         ''' When: updating the instance '''
-        persidedInstance.price=Decimal('25.30')
+        persidedInstance.version=1
         persidedInstance.save()
 
         ''' Then: the instance is updated in the DB'''
-        updatedInstance = Product.objects.get(pk=1)
+        updatedInstance = Account.objects.get(pk=1)
         self.assertIsNotNone(updatedInstance)
-        self.assertEquals('Product 1', updatedInstance.name)
-        self.assertEquals(Decimal('25.30'), updatedInstance.price)
-        self.assertEquals(CurrencyEnum.EUR, updatedInstance.currency)
+        self.assertIsNotNone(updatedInstance.address)
+        self.assertIsNotNone(updatedInstance.user)
+        self.assertEquals(1, updatedInstance.version)
 
     def findInstance(self):
-        persistProduct()
-        return Product.objects.get(pk=1)
+        persistAccount()
+        return Account.objects.get(pk=1)
 
     
     def testShouldDeleteAnInstance(self):
@@ -68,15 +66,15 @@ class TestWhenPersistingProduct(TestCase):
         persidedInstance.delete()
 
         ''' Then: the instance is deleted from the DB'''
-        persistedInstances = Product.objects.all()
+        persistedInstances = Account.objects.all()
         self.assertEquals(persistedInstances.count(), 0)
 
     
     def testShouldNotCreateADuplicatedInstance(self):
         
         ''' Given: an instance '''
-        persistProduct()
+        persistAccount()
         
         ''' Expect: an Exception if the same instance is saved in the DB '''
         with self.assertRaises(django.db.utils.IntegrityError): 
-            persistProduct()
+            persistAccount()

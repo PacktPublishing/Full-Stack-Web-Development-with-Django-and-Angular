@@ -61,6 +61,12 @@ If Behave is installed, you should see the version of your installation:
 
 behave 1.2.6
 
+### Other Testing tools
+
+```shell
+python -m pip install parameterized
+```
+
 ## Project Download
 You can clone the github repository containing the source code of this book:
 ```shell
@@ -102,6 +108,13 @@ To create your app, make sure you’re in the same directory as manage.py and ty
 ```shell
 python manage.py startapp packtDjangoApp
 ```
+
+## Migrate the Database
+```shell
+python manage.py makemigrations packtDjangoApp
+python manage.py migrate
+```
+
 ## Execute tests
 
 To automatically test your app, make sure you’re in the same directory as manage.py and type this command:
