@@ -16,5 +16,4 @@ class TestWhenFindingAccount(TestCase):
         ''' Then: the instance is read from the DB'''
         self.assertIsNotNone(persidedInstance)
         self.assertEquals('user1@packt.com', persidedInstance.user.email)
-        self.assertEquals('user1Name', persidedInstance.user.username)
-        self.assertEquals('P_assw0rd***', persidedInstance.user.password)
+        self.assertEquals('Street 1', persidedInstance.address.street)

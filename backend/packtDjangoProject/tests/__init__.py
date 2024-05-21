@@ -9,5 +9,7 @@ from .WhenPersistingAccount import *
 from .WhenPersistingInvoice import *
 from .WhenFindingUser import *
 from .WhenFindingAddress import *
+from .WhenFindingProduct import *
 from .WhenFindingAccount import *
+from .WhenFindingInvoice import *
 
