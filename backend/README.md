@@ -26,6 +26,24 @@ For other Operating systems see the following link:
 
 https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
+### Install virtualenv
+```shell
+python -m pip --version
+python -m pip install virtualenv
+```
+
+### Create a virtual environment 
+Inside the folder where later, you will clone the source code for this project run the following commands: 
+```shell
+python -m venv packtDjango-venv
+```
+
+### Activate/use the virtual environent
+```shell
+source packtDjango-venv/bin/activate (Linux)
+packtDjango-venv\Scripts\activate (Windows)
+```
+
 ### Python programming language
 
 ```shell
