@@ -1,4 +1,4 @@
-# Backend Application Powered by Django Framework and Python Programming language
+# Backend Application powered by Django Framework and Python Programming language
 
 ## Prerequisites
 
@@ -105,13 +105,11 @@ Inside packtDjangoBackend folder type the following command:
 python manage.py runserver
 ```
 
-You should see something like 
+You should see something like:
 
-```shell
 Django version 5.0.4, using settings 'packtDjangoBackend.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
-```
 
 ## Verify Project is running
 ```shell

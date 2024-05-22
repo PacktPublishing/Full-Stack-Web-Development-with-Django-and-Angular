@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+
+  # PostgreSQL: postgres Relational DB for packt django app
+  postgres-packtdjango:
+    image: postgres
+    container_name: postgres-packtdjango
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: sa
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: packtdjango-db
+      LDAP_TLS: 'false'
+      PGDATA: /var/lib/postgresql/data/packtdjango
+    volumes:
+      - ${PWD}/data/postgresql/packtdjango:/var/lib/postgresql/data
+    restart: unless-stopped
