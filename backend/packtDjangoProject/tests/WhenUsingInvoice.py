@@ -1,7 +1,7 @@
 #! python
 from django.test import TestCase
 from parameterized import parameterized
-from .BaseUnitTest import persistInvoice
+from .BaseTest import persistInvoice
 from packtDjangoApp.models import Invoice
 
 

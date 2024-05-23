@@ -1,7 +1,7 @@
 #! python
 from decimal import Decimal
 from django.test import TestCase
-from .BaseUnitTest import USER_NAME, persistInvoice
+from .BaseTest import USER_NAME, persistInvoice
 from packtDjangoApp.models import Account, Invoice, User
 
 class TestWhenFindingInvoice(TestCase):

@@ -1,6 +1,6 @@
 #! python
 from django.test import TestCase
-from .BaseUnitTest import USER_NAME, persistAccount
+from .BaseTest import USER_NAME, persistAccount
 from packtDjangoApp.models import Account, User
 
 class TestWhenFindingAccount(TestCase):

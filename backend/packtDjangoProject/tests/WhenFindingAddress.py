@@ -1,6 +1,6 @@
 #! python
 from django.test import TestCase
-from .BaseUnitTest import persistAddress
+from .BaseTest import persistAddress
 from packtDjangoApp.models import Address
 
 class TestWhenFindingAddress(TestCase):

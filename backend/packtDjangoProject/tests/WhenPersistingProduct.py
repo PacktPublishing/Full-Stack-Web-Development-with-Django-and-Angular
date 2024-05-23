@@ -4,7 +4,7 @@ import django
 from django.test import TestCase
 from packtDjangoApp.models import Product
 from packtDjangoApp.models import CurrencyEnum
-from .BaseUnitTest import buildProduct, persistProduct
+from .BaseTest import buildProduct, persistProduct
 
 
 class TestWhenPersistingProduct(TestCase):

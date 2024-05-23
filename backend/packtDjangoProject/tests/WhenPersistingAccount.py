@@ -2,7 +2,7 @@
 import django
 from django.test import TestCase
 from packtDjangoApp.models import Account
-from .BaseUnitTest import persistAccount
+from .BaseTest import persistAccount
 
 
 class TestWhenPersistingAccount(TestCase):

@@ -2,7 +2,7 @@
 import django
 from django.test import TestCase
 from django.contrib.auth.models import User
-from .BaseUnitTest import persistUser
+from .BaseTest import persistUser
 
 
 class TestWhenPersistingUser(TestCase):
