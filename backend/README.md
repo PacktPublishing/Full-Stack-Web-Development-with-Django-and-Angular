@@ -63,6 +63,7 @@ https://kinsta.com/knowledgebase/install-python/
 ```shell
 python -m pip install Django
 python -m django --version
+python -m pip install django-environ
 ```
 If Django is installed, you should see the version of your installation. If it isn’t, you’ll get an error telling “No module named django”.
 
@@ -97,6 +98,14 @@ Only in case you want to start your own project (not necessary for this tutorial
 ```shell
 django-admin startproject packtDjangoProject
 ```
+## Run Postgres Database
+Install docker in your machine
+
+Inside the docker folder type the following command:
+
+```shell
+docker-compose -f docker-compose.yml up -d
+```
 
 ## Run Backend Application
 Inside packtDjangoBackend folder type the following command:
@@ -125,10 +134,17 @@ To create your app, make sure you’re in the same directory as manage.py and ty
 python manage.py startapp packtDjangoApp
 ```
 
-## Migrate the Database
+## Migrate the Database 
 ```shell
 python manage.py makemigrations packtDjangoApp
-python manage.py migrate
+```
+default database: sqlite3
+```shell
+python manage.py migrate --database=sqlite3-packtdjango
+```
+postgres-packtdjango: postgress
+```shell
+python manage.py migrate --database=postgres-packtdjango
 ```
 
 ## Execute tests

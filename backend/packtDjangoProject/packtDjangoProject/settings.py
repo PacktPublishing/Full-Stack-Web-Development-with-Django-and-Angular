@@ -11,22 +11,27 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-from os import getenv
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env()
+
+# read th .env file
+environ.Env.read_env()
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f1^12%e9$nn%8ki4ak(#9h6#26noi2nfbgw835z@2lpve8+(^o'
+SECRET_KEY = env.str('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -72,30 +77,33 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'packtDjangoProject.wsgi.application'
 
-# Your secret key
-#SECRET_KEY = getenv("SECRET_KEY")
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+DJANGO_DATABASE = env.str('DJANGO_DATABASE', default='sqlite3-packtdjango')
+DB_NAME=env.str('DB_NAME')
+DB_USER=env.str('DB_USER')
+DB_PASSWORD=env.str('DB_PASSWORD')
+DB_HOST=env.str('DB_HOST')
+DB_PORT=env.str('DB_PORT')
+
 DATABASES = {
-    'default': {
+    'sqlite3-packtdjango': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'postgres-packtdjango': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': DB_HOST,
+        'PORT': DB_PORT,
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'packtdjango-db',
-#         'USER': 'sa',
-#         'PASSWORD': 'admin',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     }
-# }
-
+# Set the default database
+DATABASES['default'] = DATABASES[DJANGO_DATABASE]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
