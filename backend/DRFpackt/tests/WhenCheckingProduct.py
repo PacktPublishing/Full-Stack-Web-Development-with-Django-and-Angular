@@ -6,7 +6,7 @@ from packtDjangoApp.models import Product
 from .BaseTest import PRODUCT_CURRENCY, PRODUCT_PRICE, buildProduct, persistProduct
 
 
-class TestWhenUsingProduct(TestCase):
+class TestWhenCheckingProduct(TestCase):
     
 
     def testShouldHaveAStringRepresentation(self):

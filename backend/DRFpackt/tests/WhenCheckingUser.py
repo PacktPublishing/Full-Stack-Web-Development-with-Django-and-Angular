@@ -4,7 +4,7 @@ from packtDjangoApp.models import User
 from .BaseTest import persistUser
 
 
-class TestWhenUsingUser(TestCase):
+class TestWhenCheckingUser(TestCase):
     
 
     def testShouldHaveAStringRepresentation(self):

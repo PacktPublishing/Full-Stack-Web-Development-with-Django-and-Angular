@@ -4,7 +4,7 @@ from parameterized import parameterized
 from .BaseTest import persistAccount
 from packtDjangoApp.models import Account, Account
 
-class TestWhenUsingAccount(TestCase):
+class TestWhenCheckingAccount(TestCase):
     
     def testShouldHaveAStringRepresentation(self):
         

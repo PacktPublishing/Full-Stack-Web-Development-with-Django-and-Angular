@@ -6,7 +6,7 @@ from packtDjangoApp.models import Invoice
 
 
 
-class TestWhenUsingInvoice(TestCase):
+class TestWhenCheckingInvoice(TestCase):
     
 
     def testShouldHaveAStringRepresentation(self):

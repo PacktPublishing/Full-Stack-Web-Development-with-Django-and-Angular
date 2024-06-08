@@ -6,7 +6,7 @@ from packtDjangoApp.models import Address
 from .BaseTest import ADDRESS_CITY, ADDRESS_NUMBER, ADDRESS_POSTALCODE, ADDRESS_STREET, buildAddress, persistAddress
 
 
-class TestWhenUsingAddress(TestCase):
+class TestWhenCheckingAddress(TestCase):
     
 
     def testShouldHaveAStringRepresentation(self):
