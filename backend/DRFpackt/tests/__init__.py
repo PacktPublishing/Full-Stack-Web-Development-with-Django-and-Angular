@@ -13,4 +13,5 @@ from .WhenFindingAddress import *
 from .WhenFindingProduct import *
 from .WhenFindingAccount import *
 from .WhenFindingInvoice import *
+from .WhenUsingProductApi import *
 
