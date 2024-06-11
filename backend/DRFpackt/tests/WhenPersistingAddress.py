@@ -1,7 +1,7 @@
 #! python
 from django.test import TestCase
 from packtDjangoApp.models import Address
-from .BaseTest import buildAddress, persistAddress
+from .TestBase import buildAddress, persistAddress
 
 class TestWhenPersistingAddress(TestCase):
     

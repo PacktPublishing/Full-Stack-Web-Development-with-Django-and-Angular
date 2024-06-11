@@ -1,7 +1,7 @@
 #! python
 from decimal import Decimal
 from django.test import TestCase
-from .BaseTest import persistProduct
+from .TestBase import persistProduct
 from packtDjangoApp.models import CurrencyEnum, Product
 
 class TestWhenFindingProduct(TestCase):

@@ -1,7 +1,7 @@
 #! python
 from django.test import TestCase
 from parameterized import parameterized
-from .BaseTest import persistAccount
+from .TestBase import persistAccount
 from packtDjangoApp.models import Account, Account
 
 class TestWhenCheckingAccount(TestCase):

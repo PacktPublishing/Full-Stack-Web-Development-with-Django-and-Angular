@@ -3,7 +3,7 @@ import unittest
 from django.test import TestCase
 from parameterized import parameterized
 from packtDjangoApp.models import Product
-from .BaseTest import PRODUCT_CURRENCY, PRODUCT_PRICE, buildProduct, persistProduct
+from .TestBase import PRODUCT_CURRENCY, PRODUCT_PRICE, buildProduct, persistProduct
 
 
 class TestWhenCheckingProduct(TestCase):

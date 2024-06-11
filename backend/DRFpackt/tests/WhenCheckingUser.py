@@ -1,7 +1,7 @@
 #! python
 from django.test import TestCase
 from packtDjangoApp.models import User
-from .BaseTest import persistUser
+from .TestBase import persistUser
 
 
 class TestWhenCheckingUser(TestCase):

@@ -3,7 +3,7 @@ import unittest
 from django.test import TestCase
 from parameterized import parameterized
 from packtDjangoApp.models import Address
-from .BaseTest import ADDRESS_CITY, ADDRESS_NUMBER, ADDRESS_POSTALCODE, ADDRESS_STREET, buildAddress, persistAddress
+from .TestBase import ADDRESS_CITY, ADDRESS_NUMBER, ADDRESS_POSTALCODE, ADDRESS_STREET, buildAddress, persistAddress
 
 
 class TestWhenCheckingAddress(TestCase):

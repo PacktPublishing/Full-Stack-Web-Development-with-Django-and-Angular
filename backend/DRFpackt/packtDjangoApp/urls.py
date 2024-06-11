@@ -5,6 +5,9 @@ from . import views
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'products', views.ProductViewSet)
+router.register(r'addresses', views.AddressViewSet)
+router.register(r'accounts', views.AccountViewSet)
+router.register(r'invoices', views.InvoiceViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

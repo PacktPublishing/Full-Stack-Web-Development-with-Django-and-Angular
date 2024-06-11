@@ -3,7 +3,7 @@ from decimal import Decimal
 import django
 from django.test import TestCase
 from packtDjangoApp.models import Account, Invoice, Product
-from .BaseTest import PRODUCT_CURRENCY, PRODUCT_PRICE, persistInvoice
+from .TestBase import PRODUCT_CURRENCY, PRODUCT_PRICE, persistInvoice
 
 
 class TestWhenPersistingInvoice(TestCase):
