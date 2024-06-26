@@ -1,6 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 from .models import Product, Address, Account, Invoice
 from .serializers import ProductSerializer, AddressSerializer, AccountSerializer, InvoiceSerializer
 
@@ -11,6 +10,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     """
     queryset = Product.objects.all().order_by('name')
     serializer_class = ProductSerializer
+    permission_classes = [IsAuthenticated]
 
 class AddressViewSet(viewsets.ModelViewSet):
     """
@@ -18,6 +18,7 @@ class AddressViewSet(viewsets.ModelViewSet):
     """
     queryset = Address.objects.all().order_by('postal_code')
     serializer_class = AddressSerializer
+    permission_classes = [IsAuthenticated]
 
 class AccountViewSet(viewsets.ModelViewSet):
     """
@@ -25,6 +26,7 @@ class AccountViewSet(viewsets.ModelViewSet):
     """
     queryset = Account.objects.all().order_by('user')
     serializer_class = AccountSerializer
+    permission_classes = [IsAuthenticated]
 
 class InvoiceViewSet(viewsets.ModelViewSet):
     """
@@ -32,3 +34,4 @@ class InvoiceViewSet(viewsets.ModelViewSet):
     """
     queryset = Invoice.objects.all().order_by('account')
     serializer_class = InvoiceSerializer
+    permission_classes = [IsAuthenticated]    

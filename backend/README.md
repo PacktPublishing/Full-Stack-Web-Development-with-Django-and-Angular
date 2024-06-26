@@ -74,6 +74,7 @@ https://docs.djangoproject.com/en/5.0/topics/install/
 
 ```shell
 $ python -m pip install djangorestframework
+$ python -m pip install djangorestframework-simplejwt
 $ python -m pip install coreapi
 ```
 

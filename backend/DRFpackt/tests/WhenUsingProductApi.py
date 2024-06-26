@@ -3,17 +3,21 @@ from django.forms.models import model_to_dict
 from rest_framework import status
 from rest_framework.test import APITestCase
 from packtDjangoApp.models import CurrencyEnum, Product
-from .TestBase import buildProduct, persistProduct
+from .TestBase import buildProduct, persistProduct, populateProducts
+from .RestTestBase import getAuthorizedRestClient
 
 class TestWhenUsingProductApi(APITestCase):
 
     def setUp(self):
         self.url = reverse('product-list') # /api/v0/products/
+        self.client = getAuthorizedRestClient(self.client)
 
-    def ignoretestShouldCreateAnInstance(self):
+    def testShouldCreateAnInstance(self):
         
         ''' Given: an instance '''
         instance: Product = buildProduct()
+        ''' And: an authenticated user'''
+
 
         ''' When: saving the instance '''
         response = self.client.post(self.url, model_to_dict(instance), format='json')
@@ -52,6 +56,7 @@ class TestWhenUsingProductApi(APITestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.data, {'id': 1, 'name': 'Product 1', 'price': '25.30', 'currency': '€'})
 
+
     def testShouldPartiallyUpdateAnInstance(self):
         
         ''' Given: a persisted instance '''
@@ -67,6 +72,7 @@ class TestWhenUsingProductApi(APITestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.data, {'id': 1, 'name': 'Product 1', 'price': '25.30', 'currency': '€'})
 
+
     def testShouldDeleteAnInstance(self):
         
         ''' Given: a persisted instance '''
@@ -80,3 +86,43 @@ class TestWhenUsingProductApi(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         persistedInstances = Product.objects.all()
         self.assertEquals(persistedInstances.count(), 0)
+
+
+    def testShouldFindAllInstancesWithPagination(self):
+        
+        ''' Given: some persisted instances '''
+        populateProducts()
+        ''' And the page number is 5 '''
+
+        ''' When: try listing all instances by page '''
+        response = self.client.get(self.url, {'page': 1}, format='json')
+
+        ''' Then: the instances are listed with pagination '''
+        self.assertEqual(response.status_code, status.HTTP_200_OK, response.content)
+        self.assertEqual(response.data, {'count': 6, 'next': 'http://testserver/api/v0/products/?page=2', 'previous': None, 'results': [{'id': 1, 'name': 'Product 1', 'price': '55.20', 'currency': '€'}, {'id': 2, 'name': 'Product 2', 'price': '55.20', 'currency': '€'}, {'id': 3, 'name': 'Product 3', 'price': '55.20', 'currency': '€'}, {'id': 4, 'name': 'Product 4', 'price': '55.20', 'currency': '€'}, {'id': 5, 'name': 'Product 5', 'price': '55.20', 'currency': '€'}]})
+
+
+    def testShouldDenyAccessWithoutToken(self):
+        
+        ''' Given: no access token is provided '''
+        self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + 'invalidToken')
+        ''' And: a secured REST Endpoint from the API '''
+
+        ''' When: try to access the endpoint without token '''
+        response = self.client.get(self.url)
+
+        ''' Then: the Access is denied '''
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED, response.content)
+
+
+    def testShouldAllowAccessWithToken(self):
+        
+        ''' Given: a user access Token '''
+        self.client = getAuthorizedRestClient(self.client)
+        ''' And: a secured REST Endpoint from the API '''
+
+        ''' When: try to access the endpoint with token '''
+        response = self.client.get(self.url)
+
+        ''' Then: the Access is allowed '''
+        self.assertEqual(response.status_code, status.HTTP_200_OK, response.content)

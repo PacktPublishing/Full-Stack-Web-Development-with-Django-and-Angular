@@ -17,4 +17,5 @@ from .WhenUsingProductApi import *
 from .WhenUsingAddressApi import *
 from .WhenUsingAccountApi import *
 from .WhenUsingInvoiceApi import *
+from .WhenAuthenticatingApi import *
 
