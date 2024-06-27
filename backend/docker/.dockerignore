@@ -1,0 +1,8 @@
+.git
+.gitignore
+.firebase
+.editorconfig
+/coverage
+/docs
+*.zip
+*.md

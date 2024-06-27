@@ -16,3 +16,9 @@ services:
     volumes:
       - ${PWD}/data/postgresql/packtdjango:/var/lib/postgresql/data
     restart: unless-stopped
+
+  # Packt-DRF backend
+  packt-drf-backend:
+    image: packt-drf-backend
+    ports:
+      - 8000:8000
