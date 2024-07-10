@@ -17,7 +17,7 @@ describe('AppComponent', () => {
   it(`should have as title 'angularpackt-ui'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('angularpackt-UI');
+    expect(app.title).toEqual('angularpackt-ui');
   });
 
   it('should render title', () => {
