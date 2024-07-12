@@ -41,6 +41,11 @@ Node: 20.5.0
 Package Manager: npm 9.8.0
 OS: linux x64
 
+### Install Angular Material
+```shell
+$ ng add @angular/material
+```
+
 ## Project Download
 You can clone the github repository containing the source code of this book:
 ```shell
