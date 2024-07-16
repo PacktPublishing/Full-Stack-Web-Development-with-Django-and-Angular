@@ -1,1 +1,27 @@
-<h1><p>product works!</p></h1>
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="form-container">
+            <mat-form-field appearance="outline">
+                <mat-label for="name" class="form-control">Name: </mat-label>
+                <input matInput placeHolder="Product Name" data-testid="name" type="text" formControlName="name" required
+                    uppercase>
+                <mat-error #nameError *ngIf="nameCtrl.errors"> {{ getInvalidNameErrorMessage() }} !
+                </mat-error>
+                <p></p>
+                <mat-label for="price" class="form-control">Price: </mat-label>
+                <input matInput placeHolder="Product price" data-testid="price" type="text" formControlName="price" required
+                    uppercase>
+                <mat-error #priceError *ngIf="priceCtrl.errors"> {{ getInvalidPriceErrorMessage() }} !
+                </mat-error>
+                <p></p>
+                <mat-label for="currency" class="form-control">Currency: </mat-label>
+                <input matInput placeHolder="Product currency" data-testid="currency" type="text" formControlName="currency" required
+                    uppercase>
+                <mat-error #currencyError *ngIf="currencyCtrl.errors"> {{ getInvalidCurrencyErrorMessage() }} !
+                </mat-error>
+            </mat-form-field>
+            <p></p>
+            <button mat-raised-button data-testid="submitButton" type="submit" color="accent" [disabled]="!productForm.valid">
+                <mat-icon>send</mat-icon>
+            </button>
+    </div>
+</form>       
