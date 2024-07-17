@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularPacktUiMaterialModule } from './angularpackt-ui-material/angularpackt-ui-material.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    AngularPacktUiMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent],
