@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from '@angular/forms'
 import { Router } from '@angular/router';
+import { Currencies, Currency } from 'src/app/shared/convert/currency';
 import { Product } from 'src/app/shared/model/product.model';
 
 @Component({
@@ -15,6 +16,7 @@ export class ProductComponent implements OnInit {
   priceCtrl!: UntypedFormControl
   currencyCtrl!: UntypedFormControl
   product!: Product;
+  mainCurrencies: Currency[] = Currencies.mainCurrencies
   @ViewChild('nameError') nameErrorMessage: any
   @ViewChild('priceError') priceErrorMessage: any
   @ViewChild('currencyError') currencyErrorMessage: any
@@ -25,19 +27,19 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.productForm = this._formBuilder.group({
-      name: [{ value: '', disabled: false },
+      name: [{ value: 'Change name here!', disabled: false },
         {
           validators: [Validators.required, Validators.minLength(4), Validators.maxLength(50)],
           updateOn: "blur"
         }
       ],
-      price: [{ value: '', disabled: false },
+      price: [{ value: '1', disabled: false },
         {
           validators: [Validators.required],
           updateOn: "blur"
         }
       ],
-      currency: [{ value: '', disabled: false },
+      currency: [{ value: '€', disabled: false },
         {
           validators: [Validators.required],
           updateOn: "blur"
@@ -49,17 +51,22 @@ export class ProductComponent implements OnInit {
     this.currencyCtrl = this.productForm.get('currency') as UntypedFormControl
   }
 
-  onSubmit () {
-    if (this.formIsReady()) {
-      let name = this.productForm.value.name
-      let price = this.productForm.value.price
-      let currency = this.productForm.value.currency
-      if (this.productForm.dirty) {
-        this.product = new Product(name, price, currency)
-      } 
-      //this._router.navigateByUrl('/product-search')
+  selectionChanged ($event: any) {
+    switch ($event.value) {
+      case '€': {
+        this.currencyCtrl.setValue('EUR')
+        break
+      }
+      case '$': {
+        this.currencyCtrl.setValue('USD')
+        break
+      }
+      default: {
+        this.currencyCtrl.setValue($event.value)
+        break
+      }
     }
-    console.log('Creating new Product: ', this.product)
+    console.log('currency valueChange', $event)
   }
 
   getInvalidNameErrorMessage () {
@@ -79,5 +86,19 @@ export class ProductComponent implements OnInit {
   formIsReady (): boolean {
     return this.productForm.valid && this.productForm.dirty
   }
+
+  onSubmit () {
+    if (this.formIsReady()) {
+      let name = this.productForm.value.name
+      let price = this.productForm.value.price
+      let currency = this.productForm.value.currency
+      if (this.productForm.dirty) {
+        this.product = new Product(name, price, currency)
+      } 
+      //this._router.navigateByUrl('/product-search')
+    }
+    console.log('Creating new Product: ', this.product)
+  }
+
 
 }
