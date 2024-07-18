@@ -1,10 +1,11 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing'
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing'
 
 import { ProductComponent } from './product.component'
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms'
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
 import { By } from '@angular/platform-browser'
 import { Product } from 'src/app/shared/model/product.model'
+import { MatSelect } from '@angular/material/select'
 
 describe('ProductComponent', () => {
   let component: ProductComponent
@@ -41,6 +42,22 @@ describe('ProductComponent', () => {
     priceCtrl.setValue('54')
     currencyCtrl.setValue('EUR')
   }
+
+  describe('Form operation', () => {
+
+    it(`should log the value when currency is selected`, waitForAsync(() => {
+        const consoleSpy = spyOn(console, 'log')
+        const $selectChangeEvent = { source: MatSelect, value: 'USD' }
+        fixture.whenStable().then(() => {
+          expect(component.currencyCtrl.value).toEqual('USD')
+          expect(component.currencyCtrl.valid).toBeTruthy()
+          expect(consoleSpy).toHaveBeenCalledWith('currency valueChange', $selectChangeEvent)
+        })
+        component.selectionChanged($selectChangeEvent)
+      })
+    )
+
+  })
 
   describe('Form Validation', () => {
 
