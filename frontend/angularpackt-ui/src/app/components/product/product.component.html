@@ -1,4 +1,11 @@
 <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <ul>
+        <p>List of products found</p>
+        <li *ngFor="let product of products$ | async">
+        {{ product.name }}: {{ product.price }} {{ product.currency }}
+        </li>
+    </ul>
+    <p></p>
     <div class="form-container">
         <mat-form-field appearance="outline">
             <mat-label for="name" class="form-control">Name: </mat-label>

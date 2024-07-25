@@ -1,31 +1,39 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core'
 import { UntypedFormGroup, UntypedFormBuilder, Validators, UntypedFormControl } from '@angular/forms'
-import { Router } from '@angular/router';
-import { Currencies, Currency } from 'src/app/shared/convert/currency';
-import { Product } from 'src/app/shared/model/product.model';
+import { Router } from '@angular/router'
+import { MockProductService } from 'src/app/services/product/mock-product.service'
+import { ProductService } from 'src/app/services/product/product.service'
+import { AbstractProductService } from 'src/app/services/product/abstract-product.service'
+import { Currencies, Currency } from 'src/app/shared/convert/currency'
+import { Product } from 'src/app/shared/model/product.model'
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'apui-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
+  providers: [{provide: AbstractProductService, useClass: ProductService}]
 })
 export class ProductComponent implements OnInit {
 
-  productForm!: UntypedFormGroup;
+  productForm!: UntypedFormGroup
   nameCtrl!: UntypedFormControl
   priceCtrl!: UntypedFormControl
   currencyCtrl!: UntypedFormControl
-  product!: Product;
+  product!: Product
+  products$!: Observable<Product[]>
   mainCurrencies: Currency[] = Currencies.mainCurrencies
   @ViewChild('nameError') nameErrorMessage: any
   @ViewChild('priceError') priceErrorMessage: any
   @ViewChild('currencyError') currencyErrorMessage: any
 
   constructor(private _router: Router,
-    private _formBuilder: UntypedFormBuilder
-    ) { }
+    private _formBuilder: UntypedFormBuilder,
+    private productService: AbstractProductService,
+    ) {}
 
   ngOnInit(): void {
+    this.products$ = this.productService.getAll(1)
     this.productForm = this._formBuilder.group({
       name: [{ value: 'Change name here!', disabled: false },
         {
@@ -98,6 +106,8 @@ export class ProductComponent implements OnInit {
       //this._router.navigateByUrl('/product-search')
     }
     console.log('Creating new Product: ', this.product)
+    this.productService.create(this.product).subscribe(data => {this.product = data})
+    console.log('Created new Product: ', this.product)
   }
 
 

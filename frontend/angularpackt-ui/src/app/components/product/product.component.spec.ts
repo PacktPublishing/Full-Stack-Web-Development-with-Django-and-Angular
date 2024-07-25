@@ -1,11 +1,13 @@
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing'
-
-import { ProductComponent } from './product.component'
 import { ReactiveFormsModule, UntypedFormControl } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http'
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
-import { By } from '@angular/platform-browser'
-import { Product } from 'src/app/shared/model/product.model'
 import { MatSelect } from '@angular/material/select'
+import { By } from '@angular/platform-browser'
+import { of } from 'rxjs'
+import { Product } from 'src/app/shared/model/product.model'
+import { ProductComponent } from './product.component'
+import { AbstractProductService } from 'src/app/services/product/abstract-product.service'
 
 describe('ProductComponent', () => {
   let component: ProductComponent
@@ -13,15 +15,19 @@ describe('ProductComponent', () => {
   let nameCtrl: UntypedFormControl
   let priceCtrl: UntypedFormControl
   let currencyCtrl: UntypedFormControl
+  let productService: AbstractProductService
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ProductComponent],
-      imports: [ReactiveFormsModule],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      imports: [ReactiveFormsModule, HttpClientModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [AbstractProductService]
     });
     fixture = TestBed.createComponent(ProductComponent)
     component = fixture.componentInstance
+    productService = fixture.debugElement.injector.get(AbstractProductService)
+    spyOn(productService, 'getAll').and.returnValue(of([]))
     fixture.detectChanges()
   });
 
@@ -62,7 +68,6 @@ describe('ProductComponent', () => {
   describe('Form Validation', () => {
 
     it('should be valid if mandatory fields are right', fakeAsync(() => {
-      //spyOn(duplicatedSpotNameValidatorService, 'existingName').and.returnValue(of(null))
       fixture.whenStable().then(() => {
         expect(nameCtrl.valid).toBeTruthy()
         expect(priceCtrl.valid).toBeTruthy()
@@ -73,7 +78,6 @@ describe('ProductComponent', () => {
     }))
 
     it('should be invalid if name field is empty', fakeAsync(() => {
-      //spyOn(duplicatedSpotNameValidatorService, 'existingName').and.returnValue(of(null))
       fixture.whenStable().then(() => {
         givenValidInstance()
         nameCtrl.setValue("")
@@ -155,6 +159,7 @@ describe('ProductComponent', () => {
         const expectedProduct = new Product(component.productForm.value.name,
           component.productForm.value.price,
           component.productForm.value.currency)
+        const createProductServiceSpy = spyOn(productService, 'create').and.returnValue(of(expectedProduct))    
         fixture.whenStable().then(() => {
           expect(component.productForm.valid).toBeTruthy()
           expect(component.productForm.dirty).toBeTruthy()
@@ -166,6 +171,7 @@ describe('ProductComponent', () => {
         givenValidInstance()
         component.productForm.markAsDirty()
         component.onSubmit()
+        expect(createProductServiceSpy).toHaveBeenCalledTimes(1)
       }))
 
     })

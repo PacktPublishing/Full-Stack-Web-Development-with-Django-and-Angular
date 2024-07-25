@@ -1,0 +1,8 @@
+[
+    {"id": "1", "name": "PRODUCT NAME 1", "price": 23, "currency": "EUR"},
+    {"id": "2", "name": "PRODUCT NAME 2", "price": 43, "currency": "USD"},
+    {"id": "3", "name": "PRODUCT NAME 3", "price": 44, "currency": "USD"},
+    {"id": "4", "name": "PRODUCT NAME 4", "price": 76, "currency": "EUR"},
+    {"id": "5", "name": "PRODUCT NAME 5", "price": 54, "currency": "EUR"},
+    {"id": "6", "name": "PRODUCT NAME 6", "price": 74, "currency": "EUR"}
+]

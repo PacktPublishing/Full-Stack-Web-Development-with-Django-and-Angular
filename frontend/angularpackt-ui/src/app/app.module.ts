@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularPacktUiMaterialModule } from './angularpackt-ui-material/angularpackt-ui-material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AngularPacktUiMaterialModule } from './angularpackt-ui-material/angular
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    AngularPacktUiMaterialModule
+    AngularPacktUiMaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
