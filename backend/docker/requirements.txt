@@ -2,7 +2,7 @@ asgiref==3.8.1
 beautifulsoup4==4.12.3
 behave==1.2.6
 behave-django==1.4.0
-certifi==2024.2.2
+certifi==2024.7.4
 charset-normalizer==3.3.2
 coreapi==2.3.3
 coreschema==0.0.4
